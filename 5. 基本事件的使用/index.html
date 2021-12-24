@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="js/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <button @click="tipinfo">点击提示信息</button>
+    <button @click="tipinfo2(12, $event)">点击传入并提示信息2</button>  // $event为关键字，用于当作event的占位符，若不加，函数内将无法使用鼠标事件对象event
+  </div>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      methods: {  // 函数也能写在data中，但函数不需要数据代理，若写在data中，Vue会对他进行数据代理，增加无用负担
+        tipinfo(event) {  // 函数都会默认传入事件对象event     函数内this指向当前实例对象
+          console.log("点击提示信息");
+        }
+      }
+    })
+  </script>
+</body>
+</html>

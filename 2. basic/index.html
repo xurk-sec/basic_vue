@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="js/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <!-- 创建容器 -->
+  <!-- root容器内的代码依旧符合html规范，只不过混入了一些特殊的Vue语法 -->
+  <!-- root容器里的代码被称为[Vue模版] -->
+  <div id="root">
+    <!-- 插值语法{{}} -->
+    <h1>Hello, {{name}}</h1>
+  </div>
+
+  <script>
+    Vue.config.productionTip = false; // 阻止 vue 在启动时生成生产提示。
+
+    // 创建vue实例 传参数配置对象{}（配置对象的key和value都是有规定的）
+    // Vue实例解析对应的容器，对内容进行替换
+    // 组件和实例只能一一对应
+    const x = new Vue({   // 此处x未使用，删去也可运行
+      el: '#root', // 用于指定当前vue实例为哪个容器服务，值usually为选择器字符串（document.getElementById('') 等也可以）
+      data: { // data中用于存储数据，数据供el指定的容器去使用。值暂时写成一个对象（以后也可以写函数）
+        name: 'world'
+      }
+    })
+
+
+  </script>
+</body>
+</html>
+

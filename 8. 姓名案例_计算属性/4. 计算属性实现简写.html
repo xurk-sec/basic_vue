@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    姓：<input v-model="firstName"/>  <br/><br/>
+    名：<input v-model="lastName"/>  <br/><br/>
+    <!-- 注意千万不要加上括号 本质上是执行了get()/fullName() 函数后，在 vm 上添加了一个名为 fullName 的计算属性 -->
+    <div>全名：{{ fullName }}</div> 
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        firstName: '张',
+        lastName: '三',
+      },
+      computed: {
+        // 1. 完整写法
+        // fullName: {
+        //   get(){
+        //     return this.firstName.slice(0, 3) + '-' + this.lastName;
+        //   },
+        //   set(value){
+        //     let arr = value.split('-');
+        //     this.firstName = arr[0];
+        //     this.lastName = arr[1];
+        //   }
+        // }
+
+        // 2. 简写
+        // 只有确认不需要 修改/set 只需要 读取/get功能 时才可以简写
+        fullName(){  // 函数名 就相当于 get()
+          return this.firstName.slice(0, 3) + '-' + this.lastName;
+        }
+      }
+    })
+    
+  </script>
+</body>
+</html>
+
