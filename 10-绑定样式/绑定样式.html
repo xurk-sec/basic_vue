@@ -35,15 +35,24 @@
 </head>
 <body>
   <div id='root'>
-    <!-- 只用三种其中一种样式：样式的类名不确定，需要动态指定：字符串写法 -->
-    <div id='info' class='basic' :class='mood' @click='changeClass'>
-      {{name}}
-    </div> <br/><br/>
-    <!-- 三种样式随便组合：样式个数不确定、名字也不确定：数组写法 -->
-    <div class='basic' :class='multi' @click='changeColor'>{{name}}</div>
+    <!-- class 之 字符串写法 => 只用三种其中一种样式：样式的类名不确定，需要动态指定 -->
+    <div id='info' class='basic' :class='mood' @click='changeClass'>{{name}} class 之字符串写法</div> 
     <br/><br/>
-    <!-- 样式个数确定，样式名字确定，但使不使用不确定，需动态决定用不用：对象写法 -->
-    <div class='classObj'></div>
+
+    <!-- class 之 数组写法 => 三种样式随便组合：样式个数不确定、名字也不确定 -->
+    <div class='basic' :class='multi' @click='changeColor'>{{name}} class 之数组写法</div>
+    <br/><br/>
+
+    <!-- class 之 对象写法 => 样式个数确定，样式名字确定，但使不使用不确定，需动态决定用不用 -->
+    <div class="basic" :class='classObj'>class 之对象写法</div>
+    <br/><br/>
+
+    <!-- style 之 对象写法 -->
+    <div class="basic" :style="styleObj">style 之对象写法</div>
+    <br/><br/>
+
+    <!-- style 之 数组写法 -->
+    <div class="basic" :style="styleArr">style 之数组写法</div>
   </div>
   <script>
     Vue.config.productionTip = false;
@@ -52,11 +61,20 @@
       data: {
         name: '展示效果',
         mood: 'normal',
+        // 添加 class 类型，对应的 style 生效
         multi: ['color', 'border', 'radius'],
         classObj: {
           color: false,
           border: false,
-        }
+        },
+        styleObj: {
+          fontSize: '40px', // fontSize 由 font-size 转来
+          backgroundColor: 'red'
+        },
+        styleArr: [
+          // this.classObj,
+          this.styleObj
+        ]
       },
       methods: {
         changeClass(){
