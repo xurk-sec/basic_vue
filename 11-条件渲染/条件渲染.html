@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src='../js/vue.js'></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    <button @click='changeFlag'>切换</button>
+    <!-- 使用 v-show 作条件渲染 -->
+    <p v-show="flag">v-show 条件渲染</p>
+    <!-- 使用 v-if 作条件渲染 -->
+    <p v-if="flag">v-if 条件渲染</p>
+    <p v-else-if="1 === 2">v-else-if</p>
+    <p v-else>v-else</p>
+    <!-- template vs. div -->
+    <template v-if="1 === 1">
+      <h2>yi</h2>
+      <h2>er</h2>
+      <h2>san</h2>
+    </template>
+  </div>
+
+</body> 
+  <script>
+    Vue.config.productionTip = false;
+    const vm = new Vue({
+      el: '#root',
+      data: {
+        flag: true,
+      },
+      methods: {
+        changeFlag(){
+          this.flag = !this.flag;
+        }
+      }
+    })
+  </script>
+</html>
