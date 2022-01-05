@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <script>
+   
+    let data = {
+      name: "jack",
+      address: "beijing"
+    }
+
+    // 创建一个监视的实例对象，用于监视 data 中属性的变化（也就是处理 data 的第一步：加工）
+    const obs = new Observer(data);
+
+    let vm = {}
+    vm._data = vm.data = obs
+
+    function Observer(obj){
+      // 汇总对象中所有的属性形成一个数组（通过 keys 间接处理 data 中的数据，避免直接处理的死循环）
+      let keys = Object.keys(obj);
+      keys.forEach((k) => {
+        // 给每一个属性加上 get 和 set 
+        // this 指的是当前对象 Observer 因此是在当前 Observer 上添加属性
+        Object.defineProperty(this, k, {
+          get(){
+            return obj[k];
+          },
+          set(val){
+            console.log(`${k} 被修改，原值：${obj[k]}，新值：${val}`);
+            obj[k] = val;
+          }
+        })
+      })
+    }
+  </script>
+</body>
+</html>

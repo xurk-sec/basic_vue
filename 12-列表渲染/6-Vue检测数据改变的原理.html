@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <script>
+    let data = {
+      name: 'JACK'
+    }
+    // 死循环：申请读取 name 后执行 get() data.name 再次申请读取 name，再次执行 get()
+    // 因此需要一个间接数据帮助我们读取/修改对象
+    Object.defineProperty(data, 'name',{
+      get(){
+        return data.name
+      },
+      set(val){
+        data.name = val;
+      }
+    })
+  </script>
+</body>
+</html>
