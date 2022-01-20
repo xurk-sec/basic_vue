@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <button @click='addAge'>年龄+1岁</button> <br/> 
+    <button @click='addSex'>添加性别属性，默认值:男</button> <br/>
+    <button @click='addFriend'>在列表首位添加一个朋友</button> <br/>
+    <button @click='changeFriName'>修改第一个朋友的名字为: 张三</button> <br/>
+    <button @click='addHobby'>添加一个爱好</button> <br/>
+    <button @click='changeHobby'>修改第一个爱好为:开车</button> <br/>
+
+    <p>名字：{{student.name}}</p>
+    <p>性别：{{student.sex}}</p>
+    <p>对外年龄：{{student.age.sAge}} 真实年龄{{student.age.rAge}}</p>
+    <p>Friends:</p>
+    <p v-for='a in student.friends'>{{a.name}}</p>
+    <p>数组监测原理：</p>
+    <p v-for='a in student.hobby'>{{a}}</p>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        name: 'name',
+        address: 'address',
+        student: {
+          name: 'Tom',
+          age: {
+            rAge: 50,
+            sAge: 18,
+          },
+          hobby: ['hobby01','hobby02','hobby03'],
+          friends: [
+            {name: 'friend01'},
+            {name: 'friend02'},
+            {name: 'friend03'}
+          ]
+        },
+
+      },
+      methods: {
+        addAge(){
+          this.student.age.rAge += 1;
+        },
+        addSex(){
+          // Vue.set(this.student,'sex','男')
+          this.$set(this.student,'sex','男')
+        },
+        addFriend(){
+          this.student.friends.unshift({name: 'friend00'})
+        },
+        changeFriName(){
+          this.student.friends[0].name = '张三'
+        },
+        addHobby(){
+          this.student.hobby.push('newHobby')
+        },
+        changeHobby(){
+          // this.student.hobby.splice(0, 1, '开车')
+          // Vue.set(this.student.hobby, 0, '开车')
+          this.$set(this.student.hobby, 0, '开车')
+        }
+      }
+    })
+  </script>
+</body>
+</html>
