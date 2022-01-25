@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script type="text/javascript" src='../js/vue.js'></script>
+  <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.26/vue.cjs.js"></script> -->
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <form @submit.prevent="demo">
+      账号:<input type="text" v-model.trim="account"> <br/><br/>
+      密码:<input type="password" v-model="password"> <br/><br/>
+      性别：
+      男<input type='radio' name="sex" v-model="sex" value="male">
+      女<input type='radio' name="sex" v-model="sex" value="female"> <br/><br/>
+      年龄<input type="number" v-model.number="age">
+      爱好:
+      学习<input type='checkbox' v-model="hobby" value="study">
+      吃饭<input type='checkbox' v-model="hobby" value="eat">
+      游戏<input type='checkbox' v-model="hobby" value="game"> <br/><br/>
+      所属校区
+      <select v-model="city">
+        <option value=""  value="">请选择校区</option>
+        <option value="beijing" >北京</option>
+        <option value="shanghai" >上海</option>
+        <option value="guangzhou" >广州</option>
+      </select> <br/><br/>
+      其他信息:<textarea v-model="other"></textarea>
+      <br/>
+      <input type="checkbox" v-model="agree">阅读并接受<a href="www.baidu.com">《用户协议》</a>
+      <button>提交</button>
+    </form>
+  </div> 
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        account: '',
+        password: '',
+        sex: 'female',
+        age: '',
+        hobby: [],
+        city: '',
+        other: '',
+        agree: ''
+      },
+      methods: {
+        demo(){
+          alert(1);
+        }
+      }
+    })
+  </script>
+</body>
+</html>
