@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <p>n的当前值是：{{n}}</p>
+    <p>n的当前值放大十倍后是：<span v-big="n"></span></p>
+    <button @click="n++">n++</button>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        n: 1,
+      },
+      directives: {
+        // element 表示当前元素；binding 表示当前绑定的所有信息（包括值）
+        big(element, binding){
+          element.innerText = binding.value * 10
+        }
+      }
+    })
+  </script>
+</body>
+</html>

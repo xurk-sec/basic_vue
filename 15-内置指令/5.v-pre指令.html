@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 不需获取动态数据，可跳过编译阶段，加快整体编译 -->
+    <p v-pre>Hello Vue</p>
+    <p>n的当前值是：{{n}}</p>
+    <button @click="n++">n++</button>
+    
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        n: 1,
+      },
+    })
+  </script>
+</body>
+</html>

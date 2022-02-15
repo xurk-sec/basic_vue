@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    /* 选择所有有 v-cloak 属性的元素并隐藏 */
+    [v-cloak]{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- 当 vue 加载成功时会删除所有的 v-cloak 属性 -->
+    <h2 v-cloak>{{msg}}</h2>
+  </div>
+  <!-- 若网速慢，js加载延迟，只有等到js加载完成，之后的 vue 结构才被引入，会出现页面上显示 {{msg}} 的情况 -->
+  <script src="../js/vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello v-cloak',
+      },
+    })
+  </script>
+</body>
+</html>
